@@ -1,0 +1,18 @@
+server:
+  port: 10002
+
+security:
+  user:
+    name: tyloo_discovery_local
+    password: local123
+  basic:
+    enabled: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://tyloo_discovery_local:local123@127.0.0.1:${server.port}/eureka/
