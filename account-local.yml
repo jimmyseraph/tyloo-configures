@@ -1,6 +1,10 @@
 server:
   port: 10003
 
+jwt:
+  key: tyloo-key
+  expire: 10
+
 spring:
   datasource:
     druid:
