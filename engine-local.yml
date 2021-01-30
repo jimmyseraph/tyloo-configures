@@ -45,6 +45,7 @@ mq:
   config:
     exchange: tyloo.executor
     routing-key: tyloo.executor.routing
+    queue-name: tyloo.executor.queue
 
 eureka:
   instance:
