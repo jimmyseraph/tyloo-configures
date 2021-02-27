@@ -1,0 +1,42 @@
+server:
+  port: 20000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: account_route
+        uri: lb://acount:10003
+        predicates:
+        - Path=/api/account/**
+        filters:
+        - RewritePath=/api(?<segment>/?.*), $\{segment}
+
+      - id: manager_case_route
+        uri: lb://manager:10004
+        predicates:
+        - Path=/api/case/**
+        filters:
+        - TylooAuthorize=tobedone
+        - RewritePath=/api(?<segment>/?.*), $\{segment}
+
+feign:
+  hystrix:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+    enabled: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: http://tyloo_discovery_local:local123@127.0.0.1:10002/eureka/
