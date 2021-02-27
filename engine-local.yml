@@ -47,6 +47,10 @@ mq:
     routing-key: tyloo.executor.routing
     queue-name: tyloo.executor.queue
 
+feign:
+  hystrix:
+    enabled: true
+
 eureka:
   instance:
     prefer-ip-address: true
