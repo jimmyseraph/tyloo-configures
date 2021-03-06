@@ -6,7 +6,7 @@ spring:
     gateway:
       routes:
       - id: account_route
-        uri: lb://acount:10003
+        uri: lb://account:10003
         predicates:
         - Path=/api/account/**
         filters:
