@@ -17,7 +17,7 @@ spring:
         predicates:
         - Path=/api/case/**
         filters:
-        - TylooAuthorize=tobedone
+        - TylooAuthorize=true
         - RewritePath=/api(?<segment>/?.*), $\{segment}
 
 feign:
