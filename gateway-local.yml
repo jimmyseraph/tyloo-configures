@@ -20,6 +20,38 @@ spring:
         - TylooAuthorize=true
         - RewritePath=/api(?<segment>/?.*), $\{segment}
 
+      - id: manager_bug_route
+        uri: lb://manager:10004
+        predicates:
+        - Path=/api/bug/**
+        filters:
+        - TylooAuthorize=true
+        - RewritePath=/api(?<segment>/?.*), $\{segment}
+
+      - id: manager_project_route
+        uri: lb://manager:10004
+        predicates:
+        - Path=/api/project/**
+        filters:
+        - TylooAuthorize=true
+        - RewritePath=/api(?<segment>/?.*), $\{segment}
+
+      - id: manager_suite_route
+        uri: lb://manager:10004
+        predicates:
+        - Path=/api/suite/**
+        filters:
+        - TylooAuthorize=true
+        - RewritePath=/api(?<segment>/?.*), $\{segment}
+
+      - id: engine_execute_route
+        uri: lb://engine:10005
+        predicates:
+        - Path=/api/execute/**
+        filters:
+        - TylooAuthorize=true
+        - RewritePath=/api(?<segment>/?.*), $\{segment}
+
 feign:
   hystrix:
     default:
